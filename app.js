@@ -41,6 +41,9 @@ app.get('/student/:id', async function(req, res){
     try{
         const id = req.params.id;
         const result = await student.findOne({id: id});
+        if(!result){
+            return res.status(404).json({message: `cannot find student with id ${id}`});
+        }
         res.status(200).json(result);
     }
     catch(err){
@@ -52,6 +55,12 @@ app.get('/student/:id', async function(req, res){
 // create students
 app.post('/student', async function(req, res){
     try{
+        const id = req.body.id;
+        const existStudent = await student.findOne({id: id});
+        // create a student with similar id with other students
+        if(existStudent){
+            return res.status(400).json({message: `student with id ${id} already exists`});
+        }
         const result = await student.create(req.body);
         res.status(200).json(result);
     }
