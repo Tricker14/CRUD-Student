@@ -2,9 +2,7 @@
 
 ## How to run application
 
+* Install node_modules
 ```
-This is a text box with a gray background.
-You can write text here.
+npm install
 ```
-
-hello
