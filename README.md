@@ -6,3 +6,8 @@
 ```
 npm install
 ```
+
+* Run app
+```
+nodemon app
+```
